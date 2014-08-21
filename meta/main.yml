@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: Michaël Rigart
+  description: An ansible role for installing and configuring fail2ban. This role enables you to customize your local jail as well as configuring custom filters and actions.
+  company: Netronix.be
+  license: GPLv3
+  min_ansible_version: 1.8 with patch ( see README )
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+  categories:
+    - monitoring
+    - networking
+dependencies: []
+

@@ -1,0 +1,23 @@
+# The DEFAULT allows a global definition of the options. They can be override
+# in each jail afterwards.
+
+[DEFAULT]
+
+{% for param, value in fail2ban_config.items() %}
+{{ param }} = {{ value }}
+{% endfor %}
+
+
+#
+# JAILS
+#
+
+{% for section in fail2ban_filters.keys() %}
+[{{ section }}]
+
+filter = {{ section }}
+{% for param, value in fail2ban_filters[section].items() %}
+{{ param }} = {{ value }}
+{% endfor %}
+
+{% endfor %}

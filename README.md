@@ -6,14 +6,6 @@ as configuring custom filters and actions.
 
 For more information on Fail2Ban, [visit the Fail2Ban website](http://www.fail2ban.org/wiki/index.php/Main_Page)
 
-Requirements
-------------
-
-This role is tested on v1.8 and makes use of [a currently unmerged patch](https://github.com/ansible/ansible/pull/8703) . In order to 
-easily list the available custom filters, we needed a new `role_path` variable, to easily get the correct role path.
-
-So you will need to apply this patch in order to use this role.
-
 Role Variables
 --------------
 

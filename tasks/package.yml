@@ -14,7 +14,7 @@
     state: '{{ fail2ban_pkg_state }}'
     update_cache: yes
     cache_valid_time: 3600
-  when: ansible_os_family == 'Debian' and (fail2ban_pkg_version is not defined or fail2ban_pkg_version == '')
+  when: ansible_os_family == 'Debian' and (fail2ban_pkg_version is not defined or not fail2ban_pkg_version)
 
 - name: install specific Fail2Ban version for RedHat
   yum:

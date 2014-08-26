@@ -1,6 +1,6 @@
 ---
 
-- name: install specific Fail2Ban version for Debian
+- name: Debian | install specific Fail2Ban version
   apt:
     pkg: 'fail2ban={{ fail2ban_pkg_version }}'
     state: installed
@@ -8,7 +8,7 @@
     cache_valid_time: 3600
   when: ansible_os_family == 'Debian' and fail2ban_pkg_version
 
-- name: install current/latest Fail2Ban version for Debian
+- name: Debian | install current/latest Fail2Ban version
   apt:
     pkg: fail2ban
     state: '{{ fail2ban_pkg_state }}'
@@ -16,13 +16,13 @@
     cache_valid_time: 3600
   when: ansible_os_family == 'Debian' and not fail2ban_pkg_version
 
-- name: install specific Fail2Ban version for RedHat
+- name: RedHat | install specific Fail2Ban version
   yum:
     name: 'fail2ban={{ fail2ban_pkg_version }}'
     state: installed
   when: ansible_os_family == 'RedHat' and fail2ban_pkg_version
 
-- name: install current/latest Fail2Ban package for RedHat
+- name: RedHat | install current/latest Fail2Ban package
   yum:
     name: fail2ban
     state: '{{ fail2ban_pkg_state }}'

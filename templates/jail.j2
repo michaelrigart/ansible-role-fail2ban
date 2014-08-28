@@ -12,12 +12,12 @@
 # JAILS
 #
 
-{% for section in fail2ban_filters.keys() %}
+{% for section, options in fail2ban_filters.iteritems() %}
 [{{ section }}]
 
 filter = {{ section }}
-{% for param, value in fail2ban_filters[section].items() %}
-{{ param }} = {{ value }}
+{% for key, value in options.iteritems() %}
+{{ key }} = {{ value }}
 {% endfor %}
 
 {% endfor %}

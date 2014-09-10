@@ -34,7 +34,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: michaelrigart.fail2ban }
+         - { role: MichaelRigart.fail2ban }
 
 License
 -------

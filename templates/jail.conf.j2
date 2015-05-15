@@ -1,0 +1,6 @@
+[{{ item.key }}]
+
+filter = {{ item.value['filter']|default(item.key) }}
+{% for key, value in item.value.iteritems() if not key == 'filter' %}
+{{ key }} = {{ value }}
+{% endfor %}

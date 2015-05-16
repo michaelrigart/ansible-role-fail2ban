@@ -26,3 +26,5 @@ fail2ban_jails:
     logpath: '/var/log/auth.log'
     maxretry: '6'
 fail2ban_actions: []
+
+fail2ban_actions: []

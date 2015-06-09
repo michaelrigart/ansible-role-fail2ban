@@ -14,9 +14,8 @@ fail2ban_config:
   maxretry: 4
   destemail: root@localhost
 fail2ban_jails:
-  ssh:
+  sshd:
     enabled: 'true'
-    filter: 'sshd'
     port: 'ssh'
     logpath: '/var/log/auth.log'
     maxretry: '6'

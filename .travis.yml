@@ -1,5 +1,6 @@
 ---
 language: python
+sudo: required
 python: "2.7"
 before_install:
  - sudo apt-get remove --purge fail2ban

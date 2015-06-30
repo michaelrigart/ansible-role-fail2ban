@@ -3,6 +3,7 @@ language: python
 python: "2.7"
 before_install:
  - sudo apt-get remove --purge fail2ban
+ - sudo apt-get install python-software-properties
  - sudo add-apt-repository 'deb http://be.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse'
  - sudo add-apt-repository 'deb-src http://be.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse'
  - sudo apt-get update -qq

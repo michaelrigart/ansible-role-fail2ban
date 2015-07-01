@@ -4,12 +4,14 @@ sudo: required
 python: "2.7"
 before_install:
  - sudo apt-get remove --purge fail2ban
- - sudo echo 'deb http://be.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse' >> /etc/apt/sources.list
- - sudo echo 'deb-src http://be.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse' >> /etc/apt/sources.list
  - sudo apt-get update -qq
  - sudo apt-get install -qq python-apt python-pycurl
 install:
   - pip install ansible==1.8.0
+before_script:
+  - sudo add-apt-repository 'deb http://be.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse' -y
+  - sudo add-apt-repository 'deb-src http://be.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse' -y
+  - sudo apt-get update -q
 script:
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo

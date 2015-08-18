@@ -1,6 +1,6 @@
 Ansible Fail2Ban Role
 =====================
-[![Build Status](https://semaphoreci.com/api/v1/projects/5eff6bc5-156e-4c1b-88e5-41b55ff4c170/459360/badge.svg)](https://semaphoreci.com/michaelrigart/ansible-role-fail2ban) [![Build Status](https://travis-ci.org/michaelrigart/ansible-role-fail2ban.svg?branch=master)](https://travis-ci.org/michaelrigart/ansible-role-fail2ban)
+[![Build Status](https://semaphoreci.com/api/v1/projects/5eff6bc5-156e-4c1b-88e5-41b55ff4c170/459360/badge.svg)](https://semaphoreci.com/michaelrigart/ansible-role-fail2ban) 
 
 An ansible role for installing and configuring fail2ban. This role enables you to customize your local jail as well
 as configuring custom filters and actions.

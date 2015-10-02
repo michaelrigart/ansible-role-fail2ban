@@ -27,3 +27,7 @@
     name: fail2ban
     state: '{{ fail2ban_pkg_state }}'
   when: ansible_os_family == 'RedHat' and not fail2ban_pkg_version
+
+- name: RedHat | effectively disable function of package fail2ban-firewalld if we are not using firewalld - ferm for example. 
+  template: src=10-iptables.conf dest=/etc/fail2ban/jail.d/10-iptables.conf owner=root group=root mode=0644
+  when: ansible_os_family == 'RedHat' and not fail2ban_firewalld

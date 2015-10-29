@@ -33,10 +33,12 @@
   ignore_errors: True
   changed_when: False
 
-
 - debug:
     var: fail2ban_version
   changed_when: False
+
+- name: create fail2ban_jail_path
+  file: path={{ fail2ban_jail_path }} state=directory mode=0755
 
 - name: set custom jails
   template:

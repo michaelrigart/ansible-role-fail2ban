@@ -7,6 +7,11 @@ as configuring custom filters and actions.
 
 For more information on Fail2Ban, [visit the Fail2Ban website](http://www.fail2ban.org/wiki/index.php/Main_Page)
 
+Dependencies
+------------
+
+Fail2ban > 0.8
+
 Role Variables
 --------------
 

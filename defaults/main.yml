@@ -24,4 +24,5 @@ fail2ban_jails:
     port: 'ssh'
     logpath: '/var/log/auth.log'
     maxretry: '6'
+remove_fail2ban_jails: []
 fail2ban_actions: []

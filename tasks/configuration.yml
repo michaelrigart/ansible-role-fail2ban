@@ -34,3 +34,10 @@
     mode: 0644
   with_dict: fail2ban_jails
   notify: restart_fail2ban
+
+- name: remove custom jails
+  file:
+    path: '{{ fail2ban_jail_path }}/{{ item.key }}.conf'
+    state: absent
+  with_items: remove_fail2ban_jails
+  notify: restart_fail2ban

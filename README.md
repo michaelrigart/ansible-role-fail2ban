@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-fail2ban.svg)](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-fail2ban)
 Ansible Fail2Ban Role
 =====================
 [![Build Status](https://semaphoreci.com/api/v1/projects/5eff6bc5-156e-4c1b-88e5-41b55ff4c170/459360/badge.svg)](https://semaphoreci.com/michaelrigart/ansible-role-fail2ban) 

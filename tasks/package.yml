@@ -16,6 +16,12 @@
     cache_valid_time: 3600
   when: ansible_os_family == 'Debian' and not fail2ban_pkg_version
 
+- name: RedHat | install epel-release repository
+  yum:
+    name: epel-release
+    state: installed
+  when: ansible_os_family == 'RedHat'
+
 - name: RedHat | install specific Fail2Ban version
   yum:
     name: 'fail2ban={{ fail2ban_pkg_version }}'

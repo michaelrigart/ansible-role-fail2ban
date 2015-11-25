@@ -27,16 +27,6 @@
     mode: 0644
   notify: restart_fail2ban
 
-- shell: fail2ban-client --v
-  register: fail2ban_version
-  ignore_errors: True
-  changed_when: False
-
-
-- debug:
-    var: fail2ban_version
-  changed_when: False
-
 - name: set custom jails
   template:
     src: jail.conf.j2

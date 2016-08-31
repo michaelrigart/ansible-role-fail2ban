@@ -4,6 +4,7 @@
   shell: 'ls {{ role_path }}/files/filters | sed s/.conf$//'
   register: fail2ban_local_filters
   delegate_to: localhost
+  become: no
   changed_when: False
 
 - name: copy configured filters

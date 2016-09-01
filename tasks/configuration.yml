@@ -28,6 +28,14 @@
     mode: 0644
   notify: restart_fail2ban
 
+- name: ensure {{ fail2ban_jail_path }} exists
+  file:
+    dest: "{{ fail2ban_jail_path }}"
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+
 - name: set custom jails
   template:
     src: jail.conf.j2

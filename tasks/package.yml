@@ -15,5 +15,5 @@
 - name: Install specific Fail2Ban version
   package:
     name: 'fail2ban{{ fail2ban_pkg_version }}'
-    state: '{{ fail2ban_pkg_state }}'
+    state: present
   when: fail2ban_pkg_version is not none

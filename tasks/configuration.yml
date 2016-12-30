@@ -4,13 +4,14 @@
   shell: 'ls {{ role_path }}/files/filters | sed s/.conf$//'
   register: fail2ban_local_filters
   delegate_to: localhost
+  become: no
   changed_when: False
 
 - name: copy configured filters
   copy:
     src: 'filters/{{ item }}.conf'
     dest: '{{ fail2ban_filter_path }}/{{ item }}.conf'
-  with_items: fail2ban_local_filters.stdout_lines|intersect(fail2ban_jails.keys())
+  with_items: '{{ fail2ban_local_filters.stdout_lines | intersect(fail2ban_jails.keys()) }}'
   notify: restart_fail2ban
 
 - name: copy custom actions
@@ -27,10 +28,13 @@
     mode: 0644
   notify: restart_fail2ban
 
-- shell: fail2ban-client --v
-  register: fail2ban_version
-  ignore_errors: True
-  changed_when: False
+- name: ensure {{ fail2ban_jail_path }} exists
+  file:
+    dest: '{{ fail2ban_jail_path }}'
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
 
 - name: set custom jails
   template:
@@ -39,3 +43,11 @@
     mode: 0644
   with_dict: '{{ fail2ban_jails }}'
   notify: restart_fail2ban
+
+- name: remove custom jails
+  file:
+    path: '{{ fail2ban_jail_path }}/{{ item.key }}.conf'
+    state: absent
+  with_items: '{{ remove_fail2ban_jails }}'
+  notify: restart_fail2ban
+0

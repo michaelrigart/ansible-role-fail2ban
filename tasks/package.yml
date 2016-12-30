@@ -1,29 +1,19 @@
 ---
 
-- name: Debian | install specific Fail2Ban version
-  apt:
-    pkg: 'fail2ban={{ fail2ban_pkg_version }}'
-    state: installed
-    update_cache: yes
-    cache_valid_time: 3600
-  when: ansible_os_family == 'Debian' and fail2ban_pkg_version
-
-- name: Debian | install current/latest Fail2Ban version
-  apt:
-    pkg: fail2ban
-    state: '{{ fail2ban_pkg_state }}'
-    update_cache: yes
-    cache_valid_time: 3600
-  when: ansible_os_family == 'Debian' and not fail2ban_pkg_version
-
-- name: RedHat | install specific Fail2Ban version
+- name: RedHat | install epel-release repository
   yum:
-    name: 'fail2ban={{ fail2ban_pkg_version }}'
+    name: epel-release
     state: installed
-  when: ansible_os_family == 'RedHat' and fail2ban_pkg_version
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora'
 
-- name: RedHat | install current/latest Fail2Ban package
-  yum:
+- name: Install current/latest Fail2Ban version
+  package:
     name: fail2ban
     state: '{{ fail2ban_pkg_state }}'
-  when: ansible_os_family == 'RedHat' and not fail2ban_pkg_version
+  when: not fail2ban_pkg_version
+
+- name: Install specific Fail2Ban version
+  package:
+    name: 'fail2ban{{ fail2ban_pkg_version }}'
+    state: present
+  when: fail2ban_pkg_version is not none

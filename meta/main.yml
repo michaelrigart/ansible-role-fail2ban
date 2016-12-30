@@ -9,7 +9,10 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - xenial
-        - trusty
+        - precise
+    - name: Debian
+      versions:
+        - jessie
     - name: Fedora
       version:
         - all
@@ -17,4 +20,3 @@ galaxy_info:
     - monitoring
     - networking
 dependencies: []
-

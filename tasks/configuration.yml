@@ -17,7 +17,7 @@
   copy:
     src: 'actions/{{ item }}'
     dest: '{{ fail2ban_action_path }}/{{ item }}'
-  with_items: fail2ban_actions
+  with_items: '{{ fail2ban_actions }}'
   notify: restart_fail2ban
 
 - name: set jail.local
@@ -32,15 +32,10 @@
   ignore_errors: True
   changed_when: False
 
-
-- debug:
-    var: fail2ban_version
-  changed_when: False
-
 - name: set custom jails
   template:
     src: jail.conf.j2
     dest: '{{ fail2ban_jail_path }}/{{ item.key }}.conf'
     mode: 0644
-  with_dict: fail2ban_jails
+  with_dict: '{{ fail2ban_jails }}'
   notify: restart_fail2ban

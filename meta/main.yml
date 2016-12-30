@@ -4,10 +4,11 @@ galaxy_info:
   description: An ansible role for installing and configuring fail2ban. This role enables you to customize your local jail as well as configuring custom filters and actions.
   company: Netronix.be
   license: GPLv3
-  min_ansible_version: 1.8
+  min_ansible_version: 2.2
   platforms:
     - name: Ubuntu
       versions:
+        - xenial
         - trusty
     - name: Fedora
       version:

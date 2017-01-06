@@ -50,4 +50,3 @@
     state: absent
   with_items: '{{ remove_fail2ban_jails }}'
   notify: restart_fail2ban
-0

@@ -11,7 +11,7 @@
   copy:
     src: 'filters/{{ item }}.conf'
     dest: '{{ fail2ban_filter_path }}/{{ item }}.conf'
-  with_items: '{{ fail2ban_local_filters.stdout_lines | intersect(fail2ban_jails.keys()) }}'
+  with_items: '{{ fail2ban_local_filters.stdout_lines }}'
   notify: restart_fail2ban
 
 - name: copy custom actions

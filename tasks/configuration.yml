@@ -1,24 +1,17 @@
 ---
-
-- name: register local filters
-  shell: 'ls {{ role_path }}/files/filters | sed s/.conf$//'
-  register: fail2ban_local_filters
-  delegate_to: localhost
-  become: no
-  changed_when: False
-
 - name: copy configured filters
   copy:
-    src: 'filters/{{ item }}.conf'
-    dest: '{{ fail2ban_filter_path }}/{{ item }}.conf'
-  with_items: '{{ fail2ban_local_filters.stdout_lines }}'
+    src: '{{ item }}'
+    dest: '{{ fail2ban_filter_path }}/{{ item | basename }}'
+  with_fileglob: "{{ fail2ban_upload_filters_path }}/*.conf"
   notify: restart_fail2ban
 
 - name: copy custom actions
   copy:
     src: 'actions/{{ item }}'
-    dest: '{{ fail2ban_action_path }}/{{ item }}'
-  with_items: '{{ fail2ban_actions }}'
+    dest: '{{ fail2ban_action_path }}/{{ item | basename}}'
+  with_fileglob: "{{ fail2ban_upload_actions_path }}/*"
+  when: (item | basename) in fail2ban_actions
   notify: restart_fail2ban
 
 - name: set jail.local

@@ -4,6 +4,8 @@ fail2ban_path: /etc/fail2ban
 fail2ban_filter_path: /etc/fail2ban/filter.d
 fail2ban_action_path: /etc/fail2ban/action.d
 fail2ban_jail_path: /etc/fail2ban/jail.d
+fail2ban_upload_filters_path: "{{ role_path }}/files/filters"
+fail2ban_upload_actions_path: "{{ role_path }}/files/actions"
 fail2ban_pkg_state: present
 fail2ban_pkg_version:
 fail2ban_service_state: started

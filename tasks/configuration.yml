@@ -8,7 +8,7 @@
 
 - name: copy custom actions
   copy:
-    src: 'actions/{{ item }}'
+    src: '{{ item }}'
     dest: '{{ fail2ban_action_path }}/{{ item | basename}}'
   with_fileglob: "{{ fail2ban_upload_actions_path }}/*"
   when: (item | basename) in fail2ban_actions

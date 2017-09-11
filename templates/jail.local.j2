@@ -6,3 +6,18 @@
 {% for param, value in fail2ban_config.items() %}
 {{ param }} = {{ value }}
 {% endfor %}
+
+{% if ansible_distribution_release == 'precise' %}
+{% for jail_name, jail_info in fail2ban_jails.iteritems() %}
+{% if jail_name not in remove_fail2ban_jails %}
+[{{ jail_name }}]
+
+filter = {{ jail_info.filter | default(jail_name) }}
+{% for key, value in jail_info.iteritems() if not key == 'filter' %}
+{{ key }} = {{ value }}
+{% endfor %}
+
+
+{% endif %}
+{% endfor %}
+{% endif %}

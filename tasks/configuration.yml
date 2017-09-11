@@ -28,6 +28,7 @@
     group: root
     mode: '0755'
     state: directory
+  when: ansible_distribution_release != 'precise'
 
 - name: set custom jails
   template:
@@ -36,6 +37,7 @@
     mode: 0644
   with_dict: '{{ fail2ban_jails }}'
   notify: restart_fail2ban
+  when: ansible_distribution_release != 'precise'
 
 - name: remove custom jails
   file:
@@ -43,3 +45,4 @@
     state: absent
   with_items: '{{ remove_fail2ban_jails }}'
   notify: restart_fail2ban
+  when: ansible_distribution_release != 'precise'

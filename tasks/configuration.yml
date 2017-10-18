@@ -4,6 +4,8 @@
     src: '{{ item }}'
     dest: '{{ fail2ban_filter_path }}/{{ item | basename }}'
   with_fileglob: "{{ fail2ban_upload_filters_path }}/*.conf"
+  loop_control:
+    label: "{{ item | basename }}"
   notify: restart_fail2ban
 
 - name: copy custom actions
@@ -11,6 +13,8 @@
     src: '{{ item }}'
     dest: '{{ fail2ban_action_path }}/{{ item | basename}}'
   with_fileglob: "{{ fail2ban_upload_actions_path }}/*"
+  loop_control:
+    label: "{{ item | basename }}"
   when: (item | basename) in fail2ban_actions
   notify: restart_fail2ban
 
@@ -36,6 +40,8 @@
     dest: '{{ fail2ban_jail_path }}/{{ item.key }}.conf'
     mode: 0644
   with_dict: '{{ fail2ban_jails }}'
+  loop_control:
+    label: "{{ item.key }}"
   notify: restart_fail2ban
   when: ansible_distribution_release != 'precise'
 
@@ -44,5 +50,7 @@
     path: '{{ fail2ban_jail_path }}/{{ item.key }}.conf'
     state: absent
   with_items: '{{ remove_fail2ban_jails }}'
+  loop_control:
+    label: "{{ item.key }}"
   notify: restart_fail2ban
   when: ansible_distribution_release != 'precise'

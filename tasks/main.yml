@@ -1,9 +1,9 @@
 ---
 
-- include: package.yml
+- import_tasks: package.yml
   tags: package
 
-- include: configuration.yml
+- import_tasks: configuration.yml
   tags: configuration
 
 - name: start/stop fail2ban service
